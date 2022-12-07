@@ -3,7 +3,16 @@ class Category:
         # Instance variable
         self.name = name
         self.ledger = ledger
+  def deposit ():
 
+  def withdraw ():
+
+
+  def get_balance ():
+    
+  def transfer ():
+
+  def check_funds ():
 
 
 
