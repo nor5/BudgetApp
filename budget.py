@@ -50,13 +50,14 @@ class Category:
    
     title = ((30 - len(self.name) ) // 2) * "*"+self.name + ((30 - len(self.name) ) // 2) * "*"
     for i in self.ledger:
-      line1 = line1 + i["description"][:23]
+     # amountFormating = "{:.2f}".format(i["amount"])
+      line1 = line1 + i["description"][:23] +" "+ str("{:.2f}".format(i["amount"]))[-7:]+"\n"
       
-      
+    total = "Total "+str( "{:.2f}".format(self.get_balance()))
     
 
     
-    return line1
+    return line1 +total
     
     
 ##
@@ -66,9 +67,10 @@ class Category:
 ##def create_spend_chart(categories)
 food = Category("foood")
 clothing = Category("clothing")
-food.deposit(34 ,"12345678910111213141516171819202122232425")
+food.deposit(1000 ,"initiale deposit")
 clothing.deposit(100 ,"groceries")
-o = food.withdraw (2 ,"groceries")
+food.withdraw (52.45643,"groceries")
+o = food.withdraw (24,"restaurant and more food")
 food.transfer(123, clothing )
 print(food.get_balance())
 print(o)
