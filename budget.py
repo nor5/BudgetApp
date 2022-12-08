@@ -44,16 +44,29 @@ class Category:
       return False
     else:
       return True
+  #printing object Category
+  def __str__(self):
+    line1 = ""
+   
+    title = ((30 - len(self.name) ) // 2) * "*"+self.name + ((30 - len(self.name) ) // 2) * "*"
+    for i in self.ledger:
+      line1 = line1 + i["description"][:23]
+      
+      
+    
 
+    
+    return line1
+    
     
 ##
 ##
 ##
 ##
 ##def create_spend_chart(categories)
-food = Category("food")
+food = Category("foood")
 clothing = Category("clothing")
-food.deposit(34 ,"groceries")
+food.deposit(34 ,"12345678910111213141516171819202122232425")
 clothing.deposit(100 ,"groceries")
 o = food.withdraw (2 ,"groceries")
 food.transfer(123, clothing )
@@ -62,3 +75,5 @@ print(o)
 print(food.ledger)
 print(food.name)
 print(clothing.ledger)
+print("object food")
+print (food)
