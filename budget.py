@@ -64,14 +64,46 @@ class Category:
 
 
 def create_spend_chart(categories):
+  def create_spend_chart(categories):
    total_spent = 0
+   max_percentage = 0
+   categories_percentage = []
+   line = ""
+   line3 = ""
+   max_name = 0
    for categorie in categories:
       total_spent += categorie.categorie_spent
       print("total spent" +str(total_spent))
-      
-   for categorie in categories:
-      
-      percentage = math.floor(categorie.categorie_spent/total_spent*10)*10
-      print("%"+str(percentage) )
+   for x in range(100, -10 , -10):  
+     line += str(x).rjust(3) + "|"
+     for categorie in categories:
+        if categories.index(categorie) < 5:
+            percentage = math.floor(categorie.categorie_spent/total_spent*10)*10
+           
+            
+            i = categories.index(categorie)
+           
+            if percentage >= x:
+               
+                 if i == 0:
+                  line +=("o").rjust(2) 
+                 else:
+                   line +=("o").rjust(3) 
+          
+     line += " \n"  
+     for alphabet in range (0, len(categories[index_categorie].name))  :
+       for  index_categorie in range (0, len(categories)):
+         
+        
+               if index_categorie ==0:
+                    line3 += categories[index_categorie].name[alphabet].rjust(6)
+               elif index_categorie !=0 and len(categories[index_categorie-1].name)< len(categories[index_categorie].name):
+                    line3 += categories[index_categorie].name[alphabet].rjust(6+(index_categorie*3))
+               else:
+                    line3 += categories[index_categorie].name[alphabet].rjust(3)
+        line3 += "\n"
+   line2 = ("-").rjust(5)+"-"*(3*len(categories))+"\n"
+   return line + line2 + line3
 
-   return "byebye"
+
+ 
