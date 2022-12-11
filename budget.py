@@ -48,6 +48,8 @@ class Category:
   #printing object Category
   def __str__(self):
     line = ""
+    max_name = 0
+    
 
     title = (self.name).center(30, "*") + "\n"
     #title = ((30 - len(self.name) ) // 2) * "*"+self.name + ((30 - len(self.name) ) // 2) * "*"+"\n"
@@ -55,25 +57,29 @@ class Category:
 
       #line += str(i['description'][:23]).ljust(23) + for_num.rjust(7) + '\n'
 
-      line += (i["description"][:23]).ljust(23) + " " + ("{0:.2f}".format(
+      line += (i["description"][:23]).ljust(23) + ("{0:.2f}".format(
         i["amount"])[-7:]).rjust(7) + "\n"
 
-    total = "Total " + str("{:.2f}".format(self.get_balance()))
+    total = "Total: " + str("{:.2f}".format(self.get_balance()))
 
     return title + line + total
 
 
 def create_spend_chart(categories):
-  def create_spend_chart(categories):
    total_spent = 0
    max_percentage = 0
    categories_percentage = []
    line = ""
    line3 = ""
    max_name = 0
+   alphabet = 0
    for categorie in categories:
       total_spent += categorie.categorie_spent
-      print("total spent" +str(total_spent))
+   
+      if max_name <= len(categorie.name):
+           max_name = len(categorie.name)
+   print("max name"+str(max_name))
+   print("total spent" +str(total_spent))
    for x in range(100, -10 , -10):  
      line += str(x).rjust(3) + "|"
      for categorie in categories:
@@ -91,17 +97,28 @@ def create_spend_chart(categories):
                    line +=("o").rjust(3) 
           
      line += " \n"  
-     for alphabet in range (0, len(categories[index_categorie].name))  :
-       for  index_categorie in range (0, len(categories)):
-         
-        
-               if index_categorie ==0:
-                    line3 += categories[index_categorie].name[alphabet].rjust(6)
-               elif index_categorie !=0 and len(categories[index_categorie-1].name)< len(categories[index_categorie].name):
-                    line3 += categories[index_categorie].name[alphabet].rjust(6+(index_categorie*3))
-               else:
-                    line3 += categories[index_categorie].name[alphabet].rjust(3)
-        line3 += "\n"
+   for alphabet in range (0,max_name) :  
+     for  index_categorie in range (0, len(categories)):
+           
+           
+           if len(categories[index_categorie].name) > alphabet :
+                 if index_categorie == 0:
+                      line3 += categories[index_categorie].name[alphabet].rjust(6)
+                  
+                # elif index_categorie !=0 and len(categories[index_categorie].name) > len(categories[index_categorie-1].name):
+           
+                 else:
+                      line3 += categories[index_categorie].name[alphabet].rjust(3)
+           elif len(categories[index_categorie].name) <= alphabet and len(categories[index_categorie].name) < max_name:
+             
+             if index_categorie ==0:
+                      line3 += " ".rjust(6)
+                  
+                # elif index_categorie !=0 and len(categories[index_categorie].name) > len(categories[index_categorie-1].name):
+           
+             else:
+                      line3 += " ".rjust(3)
+     line3 += "\n"
    line2 = ("-").rjust(5)+"-"*(3*len(categories))+"\n"
    return line + line2 + line3
 
