@@ -81,6 +81,7 @@ def create_spend_chart(categories):
    print("max name"+str(max_name))
    print("total spent" +str(total_spent))
    for x in range(100, -10 , -10):  
+    
      line += str(x).rjust(3) + "|"
      for categorie in categories:
         if categories.index(categorie) < 5:
@@ -92,11 +93,19 @@ def create_spend_chart(categories):
             if percentage >= x:
                
                  if i == 0:
-                  line +=("o").rjust(2) 
+                  line +=("o").rjust(2)
+                  
                  else:
-                   line +=("o").rjust(3) 
+                  line +=("o").rjust(3) 
+            else :
+               
+                 if i == 0:
+                  line +=(" ").rjust(2)
+                  
+                 else:
+                  line +=(" ").rjust(3)     
           
-     line += " \n"  
+     line += "  " +"\n"  
    for alphabet in range (0,max_name) :  
      for  index_categorie in range (0, len(categories)):
            
@@ -118,9 +127,13 @@ def create_spend_chart(categories):
            
              else:
                       line3 += " ".rjust(3)
-     line3 += "\n"
+     if alphabet == max_name-1:
+       line3 += "  "
+     else:
+       line3 += "  "+"\n"
    line2 = ("-").rjust(5)+"-"*(3*len(categories))+"\n"
-   return line + line2 + line3
+   title = "Percentage spent by category\n"
+   return title + line + line2 + line3
 
 
  
